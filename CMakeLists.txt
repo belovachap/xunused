@@ -20,18 +20,12 @@ if (XUNUSED_STANDALONE_BUILD)
     set(CMAKE_FIND_PACKAGE_SORT_ORDER NATURAL)
     set(CMAKE_FIND_PACKAGE_SORT_DIRECTION DEC)
 
-    find_package(LLVM ${LLVM_VERSION_REQUIRED} CONFIG REQUIRED)
+    find_package(LLVM CONFIG REQUIRED)
     message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
     message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
 
-    if (LLVM_VERSION_MAJOR GREATER_EQUAL 16)
-        if (LLVM_VERSION_MAJOR GREATER_EQUAL 18)
-            find_package(Clang ${LLVM_VERSION_MAJOR}.${LLVM_VERSION_MINOR} CONFIG REQUIRED)
-        else()
-            find_package(Clang ${LLVM_VERSION_MAJOR} CONFIG REQUIRED)
-        endif()
-        message(STATUS "Using ClangConfig.cmake in: ${Clang_DIR}")
-    endif (LLVM_VERSION_MAJOR GREATER_EQUAL 16)
+    find_package(Clang ${LLVM_VERSION_MAJOR}.${LLVM_VERSION_MINOR} CONFIG REQUIRED)
+    message(STATUS "Using ClangConfig.cmake in: ${Clang_DIR}")
 
     set(XUNUSED_LLVM_DIR ${LLVM_DIR})
     set(XUNUSED_INCLUDE_DIRS
